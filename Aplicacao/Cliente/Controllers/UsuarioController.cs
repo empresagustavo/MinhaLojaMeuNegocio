@@ -22,19 +22,17 @@ namespace Aplicacao.Controllers
         {
             IEnumerable<Usuario> listaDeUsuarios = _contexto.Usuario;
 
+            List<Usuario> novaListaDeUsuarios = new List<Usuario>();
             if (listaDeUsuarios.Any())
             {
-                List<Usuario> novaListaDeUsuarios = new List<Usuario>();
                 foreach (var usuario in listaDeUsuarios.ToList())
                 {
                     usuario.Nivel = _contexto.Nivel.Find(usuario.NivelId);
                     novaListaDeUsuarios.Add(usuario);
                 }
-
-                return View(novaListaDeUsuarios);
             }
 
-            return View();
+            return View(novaListaDeUsuarios);
         }
 
         public IActionResult Novo()
@@ -80,30 +78,38 @@ namespace Aplicacao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Gravar(Usuario pUsuario)
         {
-            Usuario usuario = _contexto.Usuario.Find(pUsuario.EntidadeId);
-            if (usuario != null)
+            if (ModelState.IsValid)
             {
-                usuario.Nome = pUsuario.Nome;
-                usuario.Endereco = pUsuario.Endereco;
-                usuario.Email = pUsuario.Email;
-                usuario.Descricao = pUsuario.Descricao;
-                usuario.Observacao = pUsuario.Observacao;
-                usuario.Celular = pUsuario.Celular;
-                usuario.Telefone = pUsuario.Telefone;
-                usuario.DataDeAtualizacao = pUsuario.DataDeAtualizacao;
-                usuario.DataDeCadastro = pUsuario.DataDeCadastro;
-                usuario.Ativo = pUsuario.Ativo;
-                usuario.CpfCnp = pUsuario.CpfCnp;
-                usuario.NivelId = pUsuario.NivelId;
+                Usuario usuario = _contexto.Usuario.Find(pUsuario.EntidadeId);
+                if (usuario != null)
+                {
+                    usuario.Nome = pUsuario.Nome;
+                    usuario.Endereco = pUsuario.Endereco;
+                    usuario.Email = pUsuario.Email;
+                    usuario.Descricao = pUsuario.Descricao;
+                    usuario.Observacao = pUsuario.Observacao;
+                    usuario.Celular = pUsuario.Celular;
+                    usuario.Telefone = pUsuario.Telefone;
+                    usuario.DataDeAtualizacao = pUsuario.DataDeAtualizacao;
+                    usuario.DataDeCadastro = pUsuario.DataDeCadastro;
+                    usuario.Ativo = pUsuario.Ativo;
+                    usuario.CpfCnp = pUsuario.CpfCnp;
+                    usuario.NivelId = pUsuario.NivelId;
+                    usuario.LogUsuario = pUsuario.LogUsuario;
+                    usuario.LogSenha = pUsuario.LogSenha;
+                    usuario.CelularOpcional = pUsuario.CelularOpcional;
 
-                _contexto.Usuario.Update(usuario);
-            }
-            else
-            {
-                _contexto.Usuario.Add(pUsuario);
-            }
+                    _contexto.Usuario.Update(usuario);
+                }
+                else
+                {
+                    _contexto.Usuario.Add(pUsuario);
+                }
 
-            _contexto.SaveChanges();
+                _contexto.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
 
             return RedirectToAction("Index");
         }

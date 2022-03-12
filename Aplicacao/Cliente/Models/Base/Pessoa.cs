@@ -12,6 +12,9 @@ namespace Aplicacao.Models.Base
     {
         [MaxLength(16)]
         public string Celular { get; set; }
+        
+        [MaxLength(16)]
+        public string CelularOpcional { get; set; }
 
         [MaxLength(14)]
         public string Telefone { get; set; }
@@ -25,7 +28,8 @@ namespace Aplicacao.Models.Base
         public string Endereco { get; set; }
 
         [DisplayName("CPF/CNPJ")]
-        [MaxLength(18)]
+        [Required]
+        [MaxLength(18, ErrorMessage = "Documento inválido.")]
         public string CpfCnp { get; set; }
     }
 }

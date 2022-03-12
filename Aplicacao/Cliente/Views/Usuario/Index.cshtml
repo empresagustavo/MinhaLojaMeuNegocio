@@ -39,16 +39,16 @@
                         <td width="30%">@item.Nome</td>
                         <td width="10%">@item.DataDeCadastro.ToShortDateString()</td>
                         <td width="10%">@item.DataDeAtualizacao</td>
-                        <td width="20%">@item.LogUsuario</td>
-                        <td width="20%">@item.Nivel.Nome</td>
-                        <td width="10%" class="text-center">
+                        <td width="15%">@item.LogUsuario</td>
+                        <td width="10%">@item.Nivel.Nome</td>
+                        <td width="5%" class="text-center">
                             <input type="checkbox" disabled asp-for=@item.Ativo />
                         </td>
-                        <td width="20%" class="text-center">
-                            <a class="btn btn-primary" asp-controller="Usuario" asp-action="Alterar" asp-route-pUsuarioId="@item.EntidadeId">
+                        <td width="35%" class="text-center">
+                            <a class="btn btn-primary" style="width:70px" asp-controller="Usuario" asp-action="Alterar" asp-route-pUsuarioId="@item.EntidadeId">
                                 Alterar
                             </a>
-                            <a class="btn btn-primary" asp-controller="Usuario" asp-action="Excluir" asp-route-pUsuarioId="@item.EntidadeId">
+                            <a class="btn btn-primary" style="width:70px" asp-controller="Usuario" asp-action="Excluir" asp-route-pUsuarioId="@item.EntidadeId">
                                 Excluir
                             </a>
                         </td>

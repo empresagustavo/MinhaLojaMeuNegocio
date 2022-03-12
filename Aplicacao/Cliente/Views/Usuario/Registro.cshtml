@@ -15,8 +15,8 @@
         <input hidden asp-for="EntidadeId" />
         <input hidden asp-for="DataDeCadastro" />
 
+        @*Linha 1 - Label*@
         <div class="row">
-            @*Linha 1 - Label*@
             <div class="col-4">
                 <label asp-for="Nome"></label>
             </div>
@@ -27,8 +27,8 @@
                 <label asp-for="Endereco"></label>
             </div>
         </div>
+        @*Linha 1 - Input*@
         <div class="row">
-            @*Linha 1 - Input*@
             <div class="col-4">
                 <input type="text" asp-for="Nome" style="width:100%" />
                 <span class="text-danger" asp-validation-for="Nome"></span>
@@ -42,33 +42,69 @@
                 <span class="text-danger" asp-validation-for="Endereco"></span>
             </div>
         </div>
+        <br />
+        @*Linha 2 - Label*@
         <div class="row">
-            @*Linha 2 - Label*@
             <div class="col-3">
-                <label asp-for="LogUsuario"></label>
+                <label asp-for="Telefone"></label>
             </div>
             <div class="col-3">
+                <label asp-for="Celular"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="CelularOpcional"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="CpfCnp"></label>
+            </div>
+        </div>
+        @*Linha 2 - Input*@
+        <div class="row">
+            <div class="col-3">
+                <input type="" asp-for="Telefone" style="width:100%"/>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="Celular" style="width:100%"/>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="CelularOpcional" style="width:100%"/>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="CpfCnp" style="width:100%"/>
+                <span class="text-danger" asp-validation-for="CpfCnp"></span>
+            </div>
+        </div>
+        <br />
+        @*Linha 3 - Label*@
+        <div class="row">
+            <div class="col-4">
+                <label asp-for="LogUsuario"></label>
+            </div>
+            <div class="col-4">
                 <label asp-for="LogSenha"></label>
             </div>
             <div class="col-3">
                 <label asp-for="NivelId"></label>
             </div>
-            <div class="col-3">
+            <div class="col-1 text-center">
                 <label asp-for="Ativo"></label>
             </div>
         </div>
+        @*Linha 3 - Input*@
         <div class="row">
-            @*Linha 2 - Input*@
+            <div class="col-4">
+                <input type="text" asp-for="LogUsuario" style="width:100%" />
+            </div>
+            <div class="col-4">
+                <input type="password" asp-for="LogSenha" style="width:100%" />
+            </div>
             <div class="col-3">
-                <select asp-for="NivelId" asp-items="ViewBag.ListaDeNiveis" style="width:100%">
-                    <option selected>--Selecione--</option>
+                <select class="h-100" asp-for="NivelId" asp-items="ViewBag.ListaDeNiveis" style="width:100%">
+                    <option class="text-center" selected>--Selecione--</option>
                 </select>
             </div>
-            <div class="col-3">
-            </div>
-            <div class="col-3">
-            </div>
-            <div class="col-3">
+            <div class="col-1 text-center">
+                <input type="checkbox" asp-for="Ativo" />
             </div>
         </div>
         <br />
