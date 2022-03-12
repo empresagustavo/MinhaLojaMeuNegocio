@@ -1,0 +1,83 @@
+﻿@using Aplicacao.Models
+@using Microsoft.AspNetCore.Components
+@model Usuario
+
+@{
+    ViewData["Title"] = "Dados de Usuário";
+}
+
+<form method="post" asp-action="Gravar">
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Dados do Usuário</h2>
+        </div>
+
+        <input hidden asp-for="EntidadeId" />
+        <input hidden asp-for="DataDeCadastro" />
+
+        <div class="row">
+            @*Linha 1 - Label*@
+            <div class="col-4">
+                <label asp-for="Nome"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="Email"></label>
+            </div>
+            <div class="col-5">
+                <label asp-for="Endereco"></label>
+            </div>
+        </div>
+        <div class="row">
+            @*Linha 1 - Input*@
+            <div class="col-4">
+                <input type="text" asp-for="Nome" style="width:100%" />
+                <span class="text-danger" asp-validation-for="Nome"></span>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="Email" style="width:100%" />
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="col-5">
+                <input type="text" asp-for="Endereco" style="width:100%" />
+                <span class="text-danger" asp-validation-for="Endereco"></span>
+            </div>
+        </div>
+        <div class="row">
+            @*Linha 2 - Label*@
+            <div class="col-3">
+                <label asp-for="LogUsuario"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="LogSenha"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="NivelId"></label>
+            </div>
+            <div class="col-3">
+                <label asp-for="Ativo"></label>
+            </div>
+        </div>
+        <div class="row">
+            @*Linha 2 - Input*@
+            <div class="col-3">
+                <select asp-for="NivelId" asp-items="ViewBag.ListaDeNiveis" style="width:100%">
+                    <option selected>--Selecione--</option>
+                </select>
+            </div>
+            <div class="col-3">
+            </div>
+            <div class="col-3">
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12 ">
+                <input class="btn btn-primary" type="submit" value="Gravar" style="width:110px" />
+                <a class="btn btn-danger" asp-controller="Usuario" asp-action="Index" style="width:110px">Cancelar</a>
+            </div>
+        </div>
+
+    </div>
+</form>

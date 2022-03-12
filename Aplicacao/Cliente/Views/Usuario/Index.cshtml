@@ -1,0 +1,65 @@
+﻿@using Aplicacao.Models
+
+@model IEnumerable<Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Usuário(s) Cadastrado(s)</h2>
+        </div>
+        <div class="col-6 text-right align-text-bottom">
+            <a class="btn btn-primary" style="width:110px" asp-controller="Usuario" asp-action="Novo">Novo</a>
+        </div>
+    </div>
+
+    <br />
+
+    @if (Model.Any())
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">Cadastro</th>
+                    <th class="text-center">Atualização</th>
+                    <th class="text-center">Login</th>
+                    <th class="text-center">Nível</th>
+                    <th class="text-center">Ativo</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="30%">@item.Nome</td>
+                        <td width="10%">@item.DataDeCadastro.ToShortDateString()</td>
+                        <td width="10%">@item.DataDeAtualizacao</td>
+                        <td width="20%">@item.LogUsuario</td>
+                        <td width="20%">@item.Nivel.Nome</td>
+                        <td width="10%" class="text-center">
+                            <input type="checkbox" disabled asp-for=@item.Ativo />
+                        </td>
+                        <td width="20%" class="text-center">
+                            <a class="btn btn-primary" asp-controller="Usuario" asp-action="Alterar" asp-route-pUsuarioId="@item.EntidadeId">
+                                Alterar
+                            </a>
+                            <a class="btn btn-primary" asp-controller="Usuario" asp-action="Excluir" asp-route-pUsuarioId="@item.EntidadeId">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Nenhum registro cadastrado.</p>
+    }
+
+</div>
